@@ -122,20 +122,28 @@ Associare un diverso di colore ad ogni "tipo" di icona,
 attingendo da un array di colori.
 */
 
-const colRed = '#F3280D';
-const colGreen = '#0DB70D';
-const colBlue = '#1642B0';
+const colors = ['#F3280D', '#0DB70D', '#1642B0']; // definiamo array colors
 
-const colors = [colRed, colGreen, colBlue];
-
-const iconsType = []; // dichiariamo array iconsType
+const iconsTypes = []; // dichiariamo array iconsType
 
 // copiamo le diverse proprietà "type" di icons in iconsType
 icons.forEach((element, i) => {
-  let {type} = element;
-  if (!iconsType.includes(type)) {
-    iconsType.push(type)
+  let {type} = element; // recuperiamo valore type
+  if (!iconsTypes.includes(type)) { // se l'array non include quel type
+    iconsTypes.push(type) // copiamo lo stesso all'interno
   }
 });
 
-console.log(iconsType)
+// ad ogni type assegnamo un valore colore diverso
+icons.forEach((element, i) => {
+  // recuperiamo la posizione del type equivalemnte a element.type presente in iconsType
+  let eqvTypeIndex = iconsTypes.indexOf(element.type);
+  // creaimo proprietà color valorizzandola con l'elemento di colors = a eqvTypeIndex
+  element.color = colors[iconsTypes.indexOf(element.type)];
+});
+
+// aggiungiamo questa caratteristica in pagina HTML
+icons.forEach((element, i) => {
+  let {color} = element;
+  $('.box').eq(i).css('color', `${color}`);
+});

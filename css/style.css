@@ -3,3 +3,24 @@
   margin: 0;
   padding: 0;
 }
+
+body{
+  font-family: 'Teko';
+  font-size: 25px;
+}
+
+.box {
+  padding: 50px;
+  margin: 15px;
+  border: 1px groove #CCC;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
+#container {
+  width: 800px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

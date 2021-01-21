@@ -37,7 +37,7 @@ const icons = [
     family: 'fas'
   },
   {
-    name : 'hyppo',
+    name : 'hippo',
     prefix: 'fa-',
     type: 'animal',
     family: 'fas'
@@ -96,4 +96,23 @@ const icons = [
     type: 'profession',
     family: 'fas'
   },
-]
+];
+
+/* MILESTONE 1
+Utilizzando la funzione forEach e il template literal,
+visualizzare in pagina tutte le icone di Icons con il proprio nome.
+*/
+
+icons.forEach((element, i) => {
+  // creiamo elementi HTML
+  $('#container').append('<div></div>'); // primo box
+  $('#container>div').eq(i).html('<i></i> <div></div>'); // interno box
+  let thisIcon = $('#container>.box>i').eq(i); // recuperiamo icona attuale
+  let thisTitle = $('#container>.box>div').eq(i);// recuperiamo titolo attuale
+
+  // destrutturiamo valori oggetto attuale
+  let {name, prefix, type, family} = element;
+
+  thisIcon.addClass(`${family} ${prefix}${name}`); // agiamo sulla clase icona
+  thisTitle.text(`${name}`); // agiamo sul titolo
+});

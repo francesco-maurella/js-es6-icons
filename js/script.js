@@ -105,10 +105,10 @@ visualizzare in pagina tutte le icone di Icons con il proprio nome.
 
 icons.forEach((element, i) => {
   // creiamo elementi HTML
-  $('#container').append('<div></div>'); // primo box
-  $('#container>div').eq(i).html('<i></i> <div></div>').addClass('box');
-  let thisIcon = $('#container>.box>i').eq(i); // recuperiamo icona attuale
-  let thisTitle = $('#container>.box>div').eq(i);// recuperiamo titolo attuale
+  $('#icons-list').append('<div></div>'); // primo box
+  $('#icons-list>div').eq(i).html('<i></i> <div></div>').addClass('box');
+  let thisIcon = $('#icons-list>.box>i').eq(i); // recuperiamo icona attuale
+  let thisTitle = $('#icons-list>.box>div').eq(i);// recuperiamo titolo attuale
 
   // destrutturiamo valori oggetto attuale
   let {name, prefix, type, family} = element;
@@ -136,10 +136,15 @@ icons.forEach((element, i) => {
 
 // ad ogni type assegnamo un valore colore diverso
 icons.forEach((element, i) => {
-  // recuperiamo la posizione del type equivalemnte a element.type presente in iconsType
+  // recuperiamo la posizione del type equivalente al nostro, presente in iconsType
   let eqvTypeIndex = iconsTypes.indexOf(element.type);
-  // creaimo proprietà color valorizzandola con l'elemento di colors = a eqvTypeIndex
-  element.color = colors[iconsTypes.indexOf(element.type)];
+  // recuperiamo l'elemento in colors alla posizione equivalente a eqvTypeIndex
+  let colorInSameIndex = colors[eqvTypeIndex]
+  // creaimo proprietà color valorizzandola con colorInSameIndex
+  element.color = colorInSameIndex
+
+  /* OPERAZIONE RIASSUNTIVA EQUIVALENTE
+  element.color = colors[iconsTypes.indexOf(element.type)];*/
 });
 
 // aggiungiamo questa caratteristica in pagina HTML

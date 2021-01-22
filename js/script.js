@@ -4,15 +4,11 @@ const innerElementIconHTML = ((item, index) => {
   $('#icons-list>div').eq(index).html('<i></i> <div></div>').addClass('box');
   let thisIcon = $('#icons-list>.box>i').eq(index); // recuperiamo icona attuale
   let thisTitle = $('#icons-list>.box>div').eq(index);// recuperiamo titolo attuale
-
-  // destrutturiamo valori oggetto attuale
-  let {name, prefix, type, family} = item;
+  let {name, prefix, type, family} = item; // destrutturiamo valori oggetto attuale
 
   thisIcon.addClass(`${family} ${prefix}${name}`); // agiamo sulla clase icona
   thisTitle.text(`${name}`); // agiamo sul titolo
 })
-
-
 
 // definizione array di oggetti "icone"
 let icons = [
@@ -114,21 +110,23 @@ let icons = [
   },
 ];
 
+// -----------------------------------------------------------
+
 
 /* MILESTONE 1
 Utilizzando la funzione forEach e il template literal,
-visualizzare in pagina tutte le icone di Icons con il proprio nome.
-*/
+visualizzare in pagina tutte le icone di Icons con il proprio nome. */
 
 icons.forEach((element, i) => {
   innerElementIconHTML(element, i)
 });
 
+// -----------------------------------------------------------
+
 
 /* MILESTONE 2
 Associare un diverso di colore ad ogni "tipo" di icona,
-attingendo da un array di colori.
-*/
+attingendo da un array di colori. */
 
 const colors = ['#F3280D', '#0DB70D', '#1642B0']; // definiamo array colors
 
@@ -161,10 +159,12 @@ icons.forEach((element, i) => {
   $('.box').eq(i).css('color', `${color}`);
 });
 
+// -----------------------------------------------------------
+
 
 /* MILESTONE 3:
 Filtriamo le icone in base al tipo, tramite un Select
-popolato dinamicamente*/
+popolato dinamicamente. */
 
 // creiamo le Opzioni del Select in pagina, dinamicamente, tramite un ciclo
 iconsTypes.forEach((element, i) => {

@@ -45,7 +45,7 @@ header>.container> * {
   padding: 30px 20px; margin: 10px;
   background: radial-gradient(circle, #FFF 0%, #DEDEDE 100%);
   border: 1px solid #808080;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
   text-align: center; text-transform: uppercase;
 }

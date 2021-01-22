@@ -137,7 +137,7 @@ const iconsTypes = []; // dichiariamo array iconsType
 // copiamo le diverse proprietà "type" di icons in iconsType
 icons.forEach((element, i) => {
   let {type} = element; // recuperiamo valore type
-  if (!iconsTypes.includes(type)) { // se l'array non include quel type
+  if (!iconsTypes.includes(type)) { // se l'array non include quel type (duplicato)
     iconsTypes.push(type) // copiamo lo stesso all'interno
   }
 });
@@ -166,7 +166,7 @@ icons.forEach((element, i) => {
 Filtriamo le icone in base al tipo, tramite un Select
 popolato dinamicamente*/
 
-// recuperiamo elemento Select
+// creiamo le Opzioni del Select in pagina, dinamicamente, tramite un ciclo
 iconsTypes.forEach((element, i) => {
   $('.type-select').append(`<option></option>`);
   let thisOption = $('.type-select>option').eq(i+1);
@@ -176,31 +176,21 @@ iconsTypes.forEach((element, i) => {
 // scriviamo nuova lista in base all'opzione scelta
 $('.type-select').change(function(){
   let thisValue = $(this).val(); // opzione selezionata
+  let selectedIcons = icons; // selectedIcons è l'array di icone
 
-  iconsTypes.forEach((element, i) => {
+  // se l'opzione selezionata è diversa da All list)
+  if (thisValue != 'all-list') {
+    // selectedIcons sarà un array che avrà solo alcuni elementi di icons
+    selectedIcons = icons.filter((element) => {
+      let {type} = element
+      return type === thisValue; // filtriamo le icone in base al type
+    });
+  }
 
-    if (thisValue === element) {
-      // filtriamo le icone in base al type
-      let selectedIcons = icons.filter((element) => {
-        let {type} = element
-        return type === thisValue;
-      });
-
-      // cancelliamo lista attuale
-      $('#icons-list').text('');
-
-      //inseriamo lista in HTML
-      selectedIcons.forEach((element, i) => {
-        innerElementIconHTML(element, i);
-        let {color} = element;
-        $('.box').eq(i).css('color', `${color}`);
-      });
-    } else if (!thisValue) {
-      icons.forEach((element, i) => {
-        innerElementIconHTML(element, i);
-        let {color} = element;
-        $('.box').eq(i).css('color', `${color}`);
-      });
-    }
+  $('#icons-list').text(''); // cancelliamo HTML precedente al change
+  selectedIcons.forEach((element, i) => {  // inseriamo lista in HTML
+    innerElementIconHTML(element, i);
+    let {color} = element; // riprendendo anche la differenzazione colori
+    $('.box').eq(i).css('color', `${color}`);
   });
 });

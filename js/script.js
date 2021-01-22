@@ -176,19 +176,21 @@ iconsTypes.forEach((element, i) => {
 // scriviamo nuova lista in base all'opzione scelta
 $('.type-select').change(function(){
   let thisValue = $(this).val(); // opzione selezionata
-  let selectedIcons = icons; // selectedIcons è l'array di icone
+  let selectedList = []; //dichiariamo array di lista selezionata
 
   // se l'opzione selezionata è diversa da All list)
   if (thisValue != 'all-list') {
-    // selectedIcons sarà un array che avrà solo alcuni elementi di icons
-    selectedIcons = icons.filter((element) => {
+    // selectedList sarà un array che avrà solo alcuni elementi di icons
+    selectedList = icons.filter((element) => {
       let {type} = element
       return type === thisValue; // filtriamo le icone in base al type
     });
+  } else {
+    selectedList = icons; // altrimenti avrà tutti gli elementi di icons
   }
 
   $('#icons-list').text(''); // cancelliamo HTML precedente al change
-  selectedIcons.forEach((element, i) => {  // inseriamo lista in HTML
+  selectedList.forEach((element, i) => {  // inseriamo lista in HTML
     innerElementIconHTML(element, i);
     let {color} = element; // riprendendo anche la differenzazione colori
     $('.box').eq(i).css('color', `${color}`);
